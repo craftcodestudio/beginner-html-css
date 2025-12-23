@@ -1,0 +1,68 @@
+/* CraftCode STUDIO — Beginner 3D Text Ring (FINAL CSS) */
+.cc-stage {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #ffffffff;
+  perspective: 800px;
+  font-family: system-ui, Arial, sans-serif;
+}
+
+.cc-ring {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  transform-style: preserve-3d;
+  transform: rotateX(-45deg);
+  animation: cc-spin 10s linear infinite;
+}
+
+/* Letters */
+.cc-ring span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, 50%) rotateY(calc(var(--i) * -20deg + 180deg))
+    translateZ(150px) scaleX(1) scale(2.1);
+
+  font-size: 20px;
+  font-weight: 700;
+
+  /* ✨ Glitter base */
+  background: linear-gradient(120deg, #ff4ecd, #ffd86f, #6efff5, #9b7bff);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* Real drop shadow */
+  filter: drop-shadow(0 60px 2px rgba(0, 0, 0, 0.55));
+
+  animation: glitter 4s linear infinite;
+}
+
+/* Slight variation per letter */
+.cc-ring span:nth-child(odd) {
+  filter: drop-shadow(0 55px 3px rgba(0, 0, 0, 0.45));
+}
+
+.cc-ring span:nth-child(even) {
+  filter: drop-shadow(0 65px 2px rgba(0, 0, 0, 0.6));
+}
+
+/* Glitter motion */
+@keyframes glitter {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Rotation */
+@keyframes cc-spin {
+  to {
+    transform: rotateX(45deg) rotateY(-360deg);
+  }
+}
